@@ -260,3 +260,62 @@ footer .wp-block-social-links .wp-block-social-link a { padding: 10px; }
 	object-fit: cover;
 	border-radius: 50%;
 }
+
+/* Reforço de responsividade geral */
+html { scroll-behavior: smooth; }
+img { max-width: 100%; height: auto; }
+
+/* Woo clássico: neutralizar floats e garantir largura total para nosso grid */
+.woocommerce ul.products:before, .woocommerce ul.products:after { display: none !important; }
+.woocommerce ul.products li.product { width: auto !important; margin: 0 !important; float: none !important; }
+
+/* Espaçamento interno das listagens */
+.woocommerce .products, .wc-block-grid__products { padding: 8px 0; }
+
+/* Títulos e preços: reforçar contraste e hierarquia */
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+.wc-block-grid__product-title { color: var(--wp--preset--color--contrast, #000); }
+.woocommerce ul.products li.product .price,
+.wc-block-grid__product-price { color: var(--wp--preset--color--secondary, #345C00); }
+
+/* Botão add ao carrinho: largura total também no clássico variando por tema */
+.woocommerce ul.products li.product a.button { width: 100%; box-sizing: border-box; }
+
+/* Header compact no mobile */
+@media (max-width: 480px) {
+	.site-header .wp-block-group.alignwide { gap: 10px; }
+	.header-cart-link { width: 40px; height: 40px; }
+}
+
+/* Busca manual no header (form.header-search) */
+.header-search.woocommerce-product-search {
+	display: flex;
+	align-items: center;
+	flex: 1 1 640px;
+	max-width: 760px;
+	border: 1px solid var(--delivery-border);
+	border-radius: 999px;
+	padding: 6px 8px;
+	background: #fff;
+	gap: 8px;
+}
+.header-search.woocommerce-product-search .search-field {
+	border: 0;
+	flex: 1 1 auto;
+	min-height: 44px;
+	font-size: 16px;
+	padding: 12px 12px;
+	outline: none;
+}
+.header-search.woocommerce-product-search button[type="submit"] {
+	min-width: 44px;
+	min-height: 44px;
+	border-radius: 999px;
+	padding: 0 12px;
+	background: var(--wp--preset--color--tertiary, #F6F6F6);
+	color: var(--wp--preset--color--contrast, #000);
+	border: 0;
+}
+@media (max-width: 782px) {
+	.header-search.woocommerce-product-search { flex: 1 1 100%; max-width: none; order: 3; }
+}

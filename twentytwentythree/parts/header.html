@@ -8,7 +8,15 @@
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:woocommerce/product-search {"className":"header-search"} /-->
+		<!-- wp:html -->
+		<form role="search" method="get" class="header-search woocommerce-product-search" action="/">
+			<input type="search" class="search-field" placeholder="Buscar produtos..." value="" name="s" />
+			<input type="hidden" name="post_type" value="product" />
+			<button type="submit" value="Buscar" aria-label="Buscar">
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.21 5.01 12.2 2 8.6 2S2 5.01 2 8.39c0 3.38 3.01 6.39 6.6 6.39 1.61 0 3.09-.59 4.22-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6.9 0C6.01 14 4 11.99 4 9.39S6.01 4.78 8.6 4.78s4.6 2.01 4.6 4.61-2.01 4.61-4.6 4.61z"/></svg>
+			</button>
+		</form>
+		<!-- /wp:html -->
 
 		<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right","verticalAlignment":"center"}} -->
 		<div class="wp-block-group">
@@ -22,5 +30,22 @@
 		<!-- /wp:group -->
 	</div>
 	<!-- /wp:group -->
+
+	<!-- wp:html -->
+	<script>
+	(function(){
+		// Fallbacks para scripts legados que esperam parâmetros globais do WooCommerce
+		window.wc_add_to_cart_params = window.wc_add_to_cart_params || { ajax_url: '', wc_ajax_url: '' };
+		window.wc_cart_fragments_params = window.wc_cart_fragments_params || { ajax_url: '', request_timeout: 5000 };
+		window.ajaxurl = window.ajaxurl || (window.wc_add_to_cart_params && window.wc_add_to_cart_params.ajax_url) || '';
+	})();
+	document.addEventListener('DOMContentLoaded', function() {
+		var input = document.querySelector('.wc-block-product-search__field, .wp-block-search__input');
+		if (input && !input.classList.contains('search-field')) {
+			input.classList.add('search-field');
+		}
+	});
+	</script>
+	<!-- /wp:html -->
 </div>
 <!-- /wp:group -->
